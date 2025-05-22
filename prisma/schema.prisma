@@ -1,0 +1,21 @@
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id        String   @id @default(cuid())
+    name      String
+    email     String   @unique
+    phone     String?
+    createdAt DateTime @default(now())
+    ticket    Ticket?
+}
+
+model Ticket {
+    id        String   @id @default(cuid())
+    user      User     @relation(fields: [userId], references: [id])
+    userId    String   @unique
+    qrCode    String
+    createdAt DateTime @default(now())
+}
