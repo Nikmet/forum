@@ -5,7 +5,8 @@ import { Main } from "@/components/main";
 
 export const metadata = {
     title: "Информационная Россия",
-    description: "Выставка современных информационных решений"
+    description: "Выставка современных информационных решений",
+    viewport: "width=device-width, initial-scale=1"
 };
 
 const montserrat = Montserrat_Alternates({
