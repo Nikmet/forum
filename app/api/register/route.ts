@@ -17,10 +17,17 @@ export async function POST(req: Request) {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    await prisma.user.create({
+    const user = await prisma.user.create({
         data: {
             email,
             password: hashedPassword
+        }
+    });
+
+    await prisma.ticket.create({
+        data: {
+            userId: user.id,
+            qrCode: `https://inforussia.expo/ticket/${user.id}` // или просто user.email
         }
     });
 
